@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = 'https://rgb-star-wars-api.herokuapp.com/';
+const baseURL = 'https://kendao-star-wars.herokuapp.com/';
 
 export const getFilms = async () => {
     return axios.request({

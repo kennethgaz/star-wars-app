@@ -31,9 +31,7 @@ function Routes() {
                     }
                 }} name={ROUTES_NAMES.Film} component={Film} />
             </Stack.Navigator>
-
         </NavigationContainer>
-
     );
 }
 export default Routes;

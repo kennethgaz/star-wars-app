@@ -14,7 +14,6 @@ interface Props {
 @inject('homeStore')
 @observer
 export default class Film extends Component<Props> {
-
     async componentDidMount() {
         const { params } = this.props.route;
         const { getFilmById } = this.props.homeStore;

@@ -1,4 +1,4 @@
-import { Button, Card, Input, Text, Layout } from '@ui-kitten/components';
+import { Card, Text, Layout } from '@ui-kitten/components';
 import React, { Component, } from 'react';
 import { inject, observer } from 'mobx-react';
 
@@ -15,11 +15,11 @@ interface Props {
 @inject('homeStore')
 @observer
 export default class Home extends Component<Props> {
-
     async componentDidMount() {
-        const{getFilms}=this.props.homeStore;
+        const { getFilms } = this.props.homeStore;
         await getFilms();
     }
+
     render() {
         const { films } = this.props.homeStore;
     
@@ -29,6 +29,7 @@ export default class Home extends Component<Props> {
         }
     
         return (<Layout style={{ flex: 1, backgroundColor: 'black' }}>
+          {films.length == 0 && <Text style={styles.alert}>Não há filmes :(</Text>}
           <ScrollView>
             {films.map((film, index) => (
               <Card onPress={() => navigateScreen(film.id)} key={index}>
@@ -42,19 +43,24 @@ export default class Home extends Component<Props> {
 }
 
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      justifyContent: 'center',
-      paddingTop: '10',
-      padding: 8,
-    },
-    title: {
-      fontSize: 20,
-    },
-    paragraph: {
-      margin: 24,
-      fontSize: 18,
-      fontWeight: 'bold',
-      textAlign: 'center',
-    },
-  });
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    paddingTop: '10',
+    padding: 8,
+  },
+  title: {
+    fontSize: 20,
+  },
+  alert: {
+    fontSize: 20,
+    color: 'white',
+    textAlign: 'center'
+  },
+  paragraph: {
+    margin: 24,
+    fontSize: 18,
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+});
